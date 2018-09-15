@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>CODE1230 ASSIGNMENT2 
+</title>
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!--jQuery (necessary for Bootstrap's JavaScript plugins)-->
+<script src="js/jquery.min.js"></script>
+ <!-- Custom Theme files -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<!--Custom Theme files-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</script>
+
+<!--start-smoth-scrolling-->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+		
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+		</script>
+<!--start-smoth-scrolling-->
+<!-- Map -->
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
+	<script src='./js/data.js'></script>
+	<script src='./js/data1.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
+</head>
+<body>
+<!--header-->
+	<div class="header">
+		<div class="header-top">
+			<div class="container">
+				<div class="logo">
+					<a href="index.html"></a>
+				</div>
+			<!--top-nav-->
+			 <nav class="top-nav">
+				
+						</nav>
+						<div class="clearfix"> </div>
+
+				<div class="clearfix"> </div>
+		</div>
+	</div>
+		<!--banner-->
+			<div class="banner" >
+				<div class="container" style='width:1100px; height: 250px;' >
+					<div class="col-xs-20">
+						<div class="banner-info">
+						 	<h1>Map's Analysis</h1>
+						 	<h2>z5210814 
+jianlun fu</h2>
+						
+
+						</div>
+					</div>
+			 	</div>
+			</div>
+		<!--Features-->
+		<div class="Features" id="feature">
+						<div class="col-md-20 phone-text" style="width: 100vw;">
+					<h3 style="text-align: center;">Introduction</h3>
+					<p style="width: 80vw;margin:30px auto;text-align: center;">The data of 17A show the income of people of different ages in different regions of NSW in 2016.</p>
+			</div>
+
+
+					<img src="./images/123.png" style="width: 80%;margin-left: 10%">
+
+						<div class="col-md-20 phone-text" style="width: 100vw;">
+					<h3 style="text-align: center;">Impact on government and individuals</h3>
+					<p style="width: 80vw;margin:30px auto;text-align: center;">For the government, it can improve the economic development of some low-income areas by analyzing the information provided according to table 17A. The government can also provide the minimum living security for people who are underpaid or unable to work. For individuals, some investment firms are interested in high-income people by offering them services in exchange for "revenue management fees". This will also drive the economic development of the whole region.</p>
+			</div>
+			<div class="container">
+
+
+<div style="display:flex;justify-content:center">
+	<div id='map' style='width: 45%; height: 200px;margin-right: 20px'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiamstbGluIiwiYSI6ImNqbHFubWp0NDB2OTEza29ldGNxOWx5NzIifQ.m_4BN0Gn4zFIxpdlJgQ7-Q';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
+    center: [151.004105,-33.813002], // starting position [lng, lat]
+    pitch:45,
+    bearing:-17.6,
+    zoom: 9 // starting zoom
+});
+map.on('load',
+function() {
+    map.addLayer({
+        "id": "data",
+        "type": "fill-extrusion",
+        "source": {
+            'type': 'geojson',
+            'data': data1
+        },
+        'paint': {
+            'fill-extrusion-color': {
+                'property': '2016Census_G17A_NSW_SA1 women_F_Neg_Nil_income_20_24_yrs',
+                "stops": [[0, 'white'], [50, '#f957a2']]
+            },
+            'fill-extrusion-height': {
+                'property': '2016Census_G17A_NSW_SA1 women_Rate of income for women',
+                "stops": [[0.2, 0], [1, 10000]]
+            },
+            'fill-extrusion-opacity': 1
+        }
+    });
+});
+</script>
+
+<div id='map2' style='width: 45%; height: 200px;margin-left: 20px'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiamstbGluIiwiYSI6ImNqbHFubWp0NDB2OTEza29ldGNxOWx5NzIifQ.m_4BN0Gn4zFIxpdlJgQ7-Q';
+var map2 = new mapboxgl.Map({
+    container: 'map2', // container id
+    style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
+    center: [151.004105,-33.813002], // starting position [lng, lat]
+    pitch:45,
+    bearing:-17.6,
+    zoom: 9 // starting zoom
+});
+map2.on('load',
+function() {
+    map2.addLayer({
+        "id": "data",
+        "type": "fill-extrusion",
+        "source": {
+            'type': 'geojson',
+            'data': data
+        },
+        'paint': {
+            'fill-extrusion-color': {
+                'property': '2016Census_G17A_NSW_SA1 very new_M_Neg_Nil_income_20_24_yrs',
+                "stops": [[0, 'white'], [50, 'orange']]
+            },
+            'fill-extrusion-height': {
+                'property': '2016Census_G17A_NSW_SA1 very new_The rate of income between 20 and 24',
+                "stops": [[0.2, 0], [1, 10000]]
+            },
+            'fill-extrusion-opacity': 1
+        }
+    });
+});
+</script>
+</div>
+</div>
+					
+	
+		<div class="col-md-20 phone-text" style="width: 100vw;">
+					<h3 style="text-align: center;">Analysis</h3>
+					<p style="width: 80vw;margin:30px auto;text-align: center;">My topic mainly introduces the proportion of people who are 20-24 years old in NSW's income in all people. 20-24 years old is not the age of finding a job. Some people are learning knowledge at school, and others have already started work. In this regard, I used QGIS to make two maps, one to reflect the income of men aged 20-24, the other to reflect the income of women aged 20-24 (in NSW). As we can see from Figure 1, income is decreasing as it spreads from the center of the city to the suburbs. People closer to the center of the city have higher incomes, and vice versa. Probably because there are more job opportunities in big cities. The second picture is roughly the same as the first, but women aged 20 to 24 generally do not earn more than men of the same age. So in most areas, 20-24 year old men earn far more than women earn.</p>
+			</div>
+
+
+			<div class="col-md-20 phone-text" style="width: 100vw;">
+					<h3 style="text-align: center;">Conclusion</h3>
+					<p style="width: 80vw;margin:30px auto;text-align: center;">Generally speaking, young female workers are not as well paid as young male workers. There may be a notion in many people's minds that female workers are not as competent as male workers. But I think with the progress of the times, people will abandon this incorrect notion and build an equal working environment. . This difference may also be because young women value knowledge more and choose to continue studying in school rather than finding a job.</p>
+			</div>
+
+</body>
+</html>
