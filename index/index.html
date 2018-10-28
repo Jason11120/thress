@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
+    <!-- <script type="fill-extrusion" src='./NAMEOFFILE.geojson'></script> -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<title>End Year</title>
+</head>
+<body>
+	<div class="top">
+		<div class="text_h1">Office Building</div>
+		<img class="top_img" src="img/top.jpg">
+	</div>
+	<div class="one_text">
+			<div class="line"></div>
+			<div class="title_one">Background data</div>
+			<div class="line"></div>
+	</div>
+	<div class="one_img_box">
+			<img class="one_img" src="img/1.png">
+	</div>
+	<div class="first_paragraph_text">
+		From the last data survey, we can clearly see that there are many job opportunities in the city center and there are many kinds of jobs. Many young people are hard to be accepted by the company's HR because of lack of work and practical experience. Young people will have many opportunities in the downtown area. Since we can't let a lot of people live in the city center, try to expand and relocate the city center, so that there are many job opportunities in the areas where young people live.
+	</div>
+	<div id='map'></div>
+	<div class="line_box"></div>
+	<div class="second_title">
+		my design
+	</div>
+	<div class="two_text">
+		My design is an office building built away from the Centre of Sydney. The building has a unique design that has a slide around the building that runs from the top floor to the ground. The building is based on the design concept of the US Federal Bank Building. They placed a long high-altitude slide on the top floor of the building. Many people came to the slide of the US Federal Bank Building to experience the feeling of excitement. According to my survey, 80% of young people do not choose to go home to rest after a day of exhaustion, and many people like to go to bars and nightclubs. There are also a large number of people who like to do some exciting things to stimulate their tired spiritual world. “High-altitude slides” have become a very good leisure project. Young people can experience the excitement of the slides when they get off work, and take the slide to the bottom of the building. In the building, I also attracted some entertainment venues (bars, nightclubs, etc.) to invest, so that young people can have enough space to relax.
+	</div>
+	<div class="second_img_three">
+		<img class="img" src="img/2.png">
+		<img class="img" src="img/3.png">
+		<img class="img" src="img/4.png">
+	</div>
+	<div class="two_text">
+		My design is for young people to have a better life and work space. Young people have great potential. Young people are the hope of humanity in the future. We only have to try our best to tap their abilities, which will make our city and the world is more beautiful. The real purpose of Urban Transformation is that people can live better.
+	</div>
+	<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiamstbGluIiwiYSI6ImNqbHFubWp0NDB2OTEza29ldGNxOWx5NzIifQ.m_4BN0Gn4zFIxpdlJgQ7-Q';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
+    center: [151.004105,-33.813002], // starting position [lng, lat]
+    zoom: 9, // starting zoom
+    pitch:45,
+    bearing:-17.6,
+});
+map.on('load', function() {
+
+   map.addLayer({
+       "id": "data",
+       "type": "fill-extrusion",
+       "source": {
+           'type': 'geojson',
+           'data': 'https://jackie-lin.github.io/matives/good.geojson'
+       },
+       'layout': {
+           'visibility': 'visible'
+           },
+       'paint': {
+               'fill-extrusion-color' : {
+                   'property': 'colour',
+                   'type': 'identity'
+               },
+               'fill-extrusion-height' : {
+                   'type': 'identity',
+                   'property': 'height'
+               },
+               'fill-extrusion-base' : {
+                   'type': 'identity',
+                   'property': 'base_height'
+               },
+                'fill-extrusion-opacity': 1
+           }
+
+   });
+});
+</script>
+</body>
+</html>
